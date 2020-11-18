@@ -3,8 +3,24 @@ import App from './App.vue'
 import './plugins/element.js'
 import router from './router'
 
+import './style.css'
 // 引入数据请求模块
 import http from './http'
+
+Vue.mixin({
+  computed: {
+    uploadUrl() {
+      return this.$http.defaults.baseURL+'/upload'
+    }
+  },
+  methods: {
+    getAuthHeaders() {
+      return {
+        Authorization: `Bearer ${localStorage.token||''}`
+      }
+    }
+  }
+})
 
 Vue.config.productionTip = false
 

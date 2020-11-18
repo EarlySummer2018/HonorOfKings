@@ -2,7 +2,7 @@
   <div class="CategoryEdit">
     <h1>{{ id ? "编辑" : "新建" }}英雄</h1>
     <el-form label-width="120px" @submit.native.prevent="save">
-      <el-tabs type="border-card" value="skills">
+      <el-tabs type="border-card" value="basic">
         <el-tab-pane label="基本信息" name="basic">
           <el-form-item label="名称">
             <el-input v-model="model.name"></el-input>
@@ -199,29 +199,3 @@ export default {
   },
 };
 </script>
-
-<style>
-.avatar-uploader .el-upload {
-  border: 1px dashed #d9d9d9;
-  border-radius: 6px;
-  cursor: pointer;
-  position: relative;
-  overflow: hidden;
-}
-.avatar-uploader .el-upload:hover {
-  border-color: #409EFF;
-}
-.avatar-uploader-icon {
-  font-size: 28px;
-  color: #8c939d;
-  width: 4rem;
-  height: 4rem;
-  line-height: 4rem;
-  text-align: center;
-}
-.avatar {
-  width: 4rem;
-  height: 4rem;
-  display: block;
-}
-</style>
