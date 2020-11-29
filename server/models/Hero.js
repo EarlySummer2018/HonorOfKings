@@ -11,6 +11,11 @@ const schema = new mongoose.Schema({
     type: String
   },
 
+  // 英雄海报
+  banner: {
+    type: String
+  },
+
   // 英雄称号
   title: {
     type: String
@@ -63,22 +68,34 @@ const schema = new mongoose.Schema({
       type: String
     },
 
-    // 小提示
-    tips: {
+    // 冷却值
+    delay: {
+      type: String
+    },
+    // 消耗
+    cots: {
       type: String
     },
   }],
 
   // 顺风出装
   items1: [{
-    type: mongoose.SchemaTypes.ObjectId,
-    ref: 'Item'
+    icon: String,
+    name: {
+      type: mongoose.SchemaTypes.ObjectId,
+      ref: 'Item'
+    },
+
   }],
 
   // 逆风出装
   items2: [{
-    type: mongoose.SchemaTypes.ObjectId,
-    ref: 'Item'
+    icon: String,
+    name: {
+      type: mongoose.SchemaTypes.ObjectId,
+      ref: 'Item'
+    },
+
   }],
 
   // 使用技巧
@@ -97,18 +114,52 @@ const schema = new mongoose.Schema({
   },
 
   // 英雄关系
-  
+  // 最佳搭档
   partners: [{
-    // 最佳搭档
     hero: {
       type: mongoose.SchemaTypes.ObjectId,
       ref: 'Hero'
     },
     // 描述
-    description: {type: String}
+    description: {
+      type: String
+    },
+    icon: {
+      type: String
+    }
+  }],
+
+  // 克制谁
+  restrain: [{
+    hero: {
+      type: mongoose.SchemaTypes.ObjectId,
+      ref: 'Hero'
+    },
+    // 描述
+    description: {
+      type: String
+    },
+    icon: {
+      type: String
+    }
+  }],
+
+  // 被克制
+  beRestrain: [{
+    hero: {
+      type: mongoose.SchemaTypes.ObjectId,
+      ref: 'Hero'
+    },
+    // 描述
+    description: {
+      type: String
+    },
+    icon: {
+      type: String
+    }
   }]
 })
 
 
 
-module.exports = mongoose.model('Hero', schema)
+module.exports = mongoose.model('Hero', schema, 'heroes')

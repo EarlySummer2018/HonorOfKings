@@ -1,5 +1,5 @@
 <template>
-  <div class="home">
+  <div class="page-home">
     <!-- swiper -->
     <swiper :options="swiperOptions">
       <swiper-slide>
@@ -33,32 +33,40 @@
         <i class="sprite sprite-arrow mr-1"></i><span>收起</span>
       </div>
     </div>
+    <!-- news list -->
     <m-list-card icon="news" title="新闻资讯" :categories="newsCats">
-       <template #items="{category}">
-         <div class="py-2" v-for="(item,i) in category.newsList" :key="i">
-           <span>[{{item.categoryName}}]</span>
-           <span>|</span>
-           <span>{{item.title}}</span>
-           <span>{{item.data}}</span>
-         </div>
-       </template>
+      <template #items="{ category }">
+        <router-link
+        tag="div"
+        :to="`/newsInfo/${item._id}`"
+          class="py-2 fs-lg d-flex"
+          v-for="(item, i) in category.newsList"
+          :key="i"
+        >
+          <span class="text-blue">[{{ item.categoryName }}]</span>
+          <span class="px-2">|</span>
+          <span class="text-dark flex-1 text-ellipsis pr-2">{{ item.title }}</span>
+          <!-- <span>{{ item.createdAt | formatDate }}</span> -->
+          <span class="text-lightgrey fs-sm">11/22</span>
+        </router-link>
+      </template>
     </m-list-card>
-    <p>aaaaaaa</p>
-    <p>aaaaaaa</p>
-    <p>aaaaaaa</p>
-    <p>aaaaaaa</p>
-    <p>aaaaaaa</p>
-
-    <p>aaaaaaa</p>
-    <p>aaaaaaa</p>
-    <p>aaaaaaa</p>
-    <p>aaaaaaa</p>
-    <p>aaaaaaa</p>
+    <!-- end off news list -->
+    <hero-list></hero-list>
+    <!-- end off heroes list -->
+    1
   </div>
 </template>
 
 <script>
+import dayjs from 'dayjs'
+import HeroList from '../components/HeroList.vue'
 export default {
+  filters: {
+    formatDate(val) {
+      return dayjs(val).format('MM/DD')
+    }
+  },
   data() {
     return {
       list: [
@@ -84,50 +92,22 @@ export default {
           el: ".pagination-home",
         },
       },
-      newsCats: [
-        {
-          name: "热门",
-          newsList: new Array(5).fill({}).map(() => ({
-            categoryName: "热门",
-            title: "11月19日体验服停机更新公告",
-            data: "11/20",
-          })),
-        },
-        {
-          name: "新闻",
-          newsList: new Array(5).fill({}).map(() => ({
-            categoryName: "新闻",
-            title: "11月19日体验服停机更新公告",
-            data: "11/20",
-          })),
-        },
-        {
-          name: "公告",
-          newsList: new Array(5).fill({}).map(() => ({
-            categoryName: "公告",
-            title: "11月19日体验服停机更新公告",
-            data: "11/20",
-          })),
-        },
-        {
-          name: "活动",
-          newsList: new Array(5).fill({}).map(() => ({
-            categoryName: "活动",
-            title: "11月19日体验服停机更新公告",
-            data: "11/20",
-          })),
-        },
-        {
-          name: "赛事",
-          newsList: new Array(5).fill({}).map(() => ({
-            categoryName: "赛事",
-            title: "11月19日体验服停机更新公告",
-            data: "11/20",
-          })),
-        },
-      ],
+      newsCats: []
     };
   },
+  created() {
+    this.fetchNewsCats()
+  },
+  methods: {
+    async fetchNewsCats() {
+      const res = await this.$http.get('news/list');
+      this.newsCats = res.data
+    },
+
+  },
+  components: {
+    HeroList
+  }
 };
 </script>
 <style lang="scss">
@@ -152,6 +132,26 @@ export default {
     border-left: 1px solid $border-color;
     &:nth-child(4n + 1) {
       border-left: none;
+    }
+  }
+}
+.hero-list {
+  margin: 0 -0.3077rem;
+  li {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 0.3077rem;
+    padding: 0.3077rem;
+    width: 20%;
+    height: 6.1538rem;
+    img {
+      width: 100%;
+      border-radius: 0.4615rem;
+    }
+    span {
+      margin-top: 0.3077rem;
     }
   }
 }

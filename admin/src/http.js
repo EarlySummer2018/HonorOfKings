@@ -9,7 +9,7 @@ const http = axios.create({
 // 添加请求拦截器
 http.interceptors.request.use(function (config) {
   if (localStorage.token) {
-    config.headers.Authorization = 'Bearer ' + localStorage.token || ''
+    config.headers.Authorization = 'Bearer ' + localStorage.token || '';
   }
   return config
 }, function (error) {

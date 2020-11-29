@@ -32,7 +32,7 @@ export default {
       }else {
         await this.$http.post('rest/admin_users', this.model);
       }
-      this.$router.push('/admin_users/list')
+      // this.$router.push('/admin_users/list')
       this.$message({
         type: 'success',
         message: '保存成功'

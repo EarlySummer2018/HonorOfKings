@@ -9,13 +9,13 @@ const schema = new mongoose.Schema({
   body: {
     type: String
   },
-
   // 文章类别
   categories: [{
     type: mongoose.SchemaTypes.ObjectId,
     ref: 'Category'
   }]
-
+}, {
+  timestamps: true
 })
 
 

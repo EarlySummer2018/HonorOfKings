@@ -52,7 +52,7 @@ export default {
       } else {
         await this.$http.post("rest/articles", this.model);
       }
-      this.$router.push("/articles/list");
+      // this.$router.push("/articles/list");
       this.$message({
         type: "success",
         message: "保存成功",

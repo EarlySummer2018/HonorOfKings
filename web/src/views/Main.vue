@@ -8,7 +8,7 @@
       </div>
       <button type="button" class="btn bg-primary">立即下载</button>
     </div>
-    <div class="bg-primary pt-3 pb-2">
+    <div class="bg-primary pt-3 pb-2 mt-5">
       <div class="nav jc-around nav-inverse pd-1">
         <div class="nav-item active">
           <router-link class="nav-link" to="/">首页</router-link>
@@ -36,8 +36,17 @@ p {
   padding: 0;
 }
 .topbar {
+  position: fixed;
+  width: 100%;
+  min-width: 320px;
+  top: 0;
+  left: 0;
+  z-index: 999;
   .logo_img {
     height: 30px;
   }
+}
+.mt-5 {
+  margin-top: 3.4rem;
 }
 </style>>

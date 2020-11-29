@@ -46,7 +46,7 @@ export default {
       } else {
         await this.$http.post("rest/items", this.model);
       }
-      this.$router.push("/items/list");
+      // this.$router.push("/items/list");
       this.$message({
         type: "success",
         message: "保存成功",

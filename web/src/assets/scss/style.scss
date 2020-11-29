@@ -20,6 +20,7 @@ html {
 
 body {
   margin: 0;
+  min-width: 320px;
   font-family: Arial, Helvetica, sans-serif;
   line-height: 1.2em;
   background: #f1f1f1;
@@ -42,7 +43,13 @@ $color in $colors {
     background-color: $color;
   }
 }
-
+// text overflow
+.text-ellipsis {
+  display: inline-block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
 // text
 @each $var in left,
 center,
@@ -138,6 +145,9 @@ $type in $spacing-types {
 .w-100 {
   width: 100%;
 }
+.h-100 {
+  height: 100%;
+}
 
 //button 
 .btn {
@@ -157,8 +167,11 @@ $type in $spacing-types {
 
     &.active {
       border-bottom-color: map-get($map: $colors, $key: 'primary');
+      .nav-link {
+        color: map-get($map: $colors, $key: 'primary');
+      }
     }
-    a {
+    .nav-link {
       color: black;
     }
   }
@@ -170,7 +183,7 @@ $type in $spacing-types {
       &.active {
         border-bottom-color: map-get($map: $colors, $key: 'white');
       }
-      a {
+      .nav-link {
         color: white;
       }
     }
@@ -260,5 +273,15 @@ $type in $spacing-types {
     width: 1.3846rem;
     height: 0.2308rem;
     background-position: 47.619% 56.305%;
+  }
+  &.sprite-hreoes {
+    width: 0.9231rem;
+    height: 1rem;
+    background-position: 46.768% 60.452%;
+  }
+  &.sprite-related {
+    width: 1rem;
+    height: 1rem;
+    background-position: 0.138% 62.783%;
   }
 }
