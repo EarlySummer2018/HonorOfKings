@@ -82,92 +82,26 @@
           <!-- 英雄出装与使用技巧 -->
           <!-- 顺风出装 -->
           <el-form-item label="顺风出装">
-            <el-button size="samll" @click="model.items1.push({})"
-              ><i class="el-icon-plus"></i>添加顺风出装</el-button
-            >
-            <el-row type="flex" style="flex-wrap: wrap">
-              <el-col
-                :md="8"
-                v-for="(item, index) in model.items1"
-                :key="index"
-              >
-                <el-form-item class="f_l" label="装备图标">
-                  <el-upload
-                    class="avatar-uploader"
-                    :action="uploadUrl"
-                    :headers="getAuthHeaders()"
-                    :show-file-list="false"
-                    :on-success="(res) => $set(item, 'icon', res.url)"
-                  >
-                    <img v-if="item.icon" :src="item.icon" class="avatar" />
-                    <i v-else class="el-icon-plus avatar-uploader-icon"></i>
-                  </el-upload>
-                </el-form-item>
-                <el-form-item class="f_l" label="装备名称">
-                  <el-select v-model="item.name" filterable>
-                    <el-option
-                      v-for="eq in items"
-                      :key="eq._id"
-                      :value="eq._id"
-                      :label="eq.name"
-                    ></el-option>
-                  </el-select>
-                </el-form-item>
-                <el-form-item>
-                  <el-button
-                    size="small"
-                    type="danger"
-                    @click="model.items1.splice(index, 1)"
-                    >删除</el-button
-                  >
-                </el-form-item>
-              </el-col>
-            </el-row>
+            <el-select v-model="model.items1" filterable multiple>
+              <el-option
+                v-for="item in items"
+                :key="item._id"
+                :value="item._id"
+                :label="item.name"
+              ></el-option>
+            </el-select>
           </el-form-item>
           <!-- 顺风出装结束 -->
           <!-- 逆风出装 -->
           <el-form-item label="逆风出装">
-            <el-button size="samll" @click="model.items2.push({})"
-              ><i class="el-icon-plus"></i>添加逆风出装</el-button
-            >
-            <el-row type="flex" style="flex-wrap: wrap">
-              <el-col
-                :md="8"
-                v-for="(item, index) in model.items2"
-                :key="index"
-              >
-                <el-form-item class="f_l" label="装备图标">
-                  <el-upload
-                    class="avatar-uploader"
-                    :action="uploadUrl"
-                    :headers="getAuthHeaders()"
-                    :show-file-list="false"
-                    :on-success="(res) => $set(item, 'icon', res.url)"
-                  >
-                    <img v-if="item.icon" :src="item.icon" class="avatar" />
-                    <i v-else class="el-icon-plus avatar-uploader-icon"></i>
-                  </el-upload>
-                </el-form-item>
-                <el-form-item class="f_l" label="装备名称">
-                  <el-select v-model="item.name" filterable>
-                    <el-option
-                      v-for="eq in items"
-                      :key="eq._id"
-                      :value="eq._id"
-                      :label="eq.name"
-                    ></el-option>
-                  </el-select>
-                </el-form-item>
-                <el-form-item>
-                  <el-button
-                    size="small"
-                    type="danger"
-                    @click="model.items2.splice(index, 1)"
-                    >删除</el-button
-                  >
-                </el-form-item>
-              </el-col>
-            </el-row>
+            <el-select v-model="model.items2" filterable multiple>
+              <el-option
+                v-for="item in items"
+                :key="item._id"
+                :value="item._id"
+                :label="item.name"
+              ></el-option>
+            </el-select>
           </el-form-item>
           <!-- 逆风出装结束 -->
           <el-form-item label="使用技巧">
@@ -248,18 +182,6 @@
                   ></el-option>
                 </el-select>
               </el-form-item>
-              <el-form-item label="英雄头像">
-                <el-upload
-                  class="avatar-uploader"
-                  :action="uploadUrl"
-                  :headers="getAuthHeaders()"
-                  :show-file-list="false"
-                  :on-success="(res) => $set(item, 'icon', res.url)"
-                >
-                  <img v-if="item.icon" :src="item.icon" class="avatar" />
-                  <i v-else class="el-icon-plus avatar-uploader-icon"></i>
-                </el-upload>
-              </el-form-item>
               <el-form-item label="描述">
                 <el-input v-model="item.description" type="textare"></el-input>
               </el-form-item>
@@ -294,18 +216,6 @@
                   ></el-option>
                 </el-select>
               </el-form-item>
-              <el-form-item label="英雄头像">
-                <el-upload
-                  class="avatar-uploader"
-                  :action="uploadUrl"
-                  :headers="getAuthHeaders()"
-                  :show-file-list="false"
-                  :on-success="(res) => $set(item, 'icon', res.url)"
-                >
-                  <img v-if="item.icon" :src="item.icon" class="avatar" />
-                  <i v-else class="el-icon-plus avatar-uploader-icon"></i>
-                </el-upload>
-              </el-form-item>
               <el-form-item label="描述">
                 <el-input v-model="item.description" type="textare"></el-input>
               </el-form-item>
@@ -339,18 +249,6 @@
                     :label="hero.name"
                   ></el-option>
                 </el-select>
-              </el-form-item>
-              <el-form-item label="英雄头像">
-                <el-upload
-                  class="avatar-uploader"
-                  :action="uploadUrl"
-                  :headers="getAuthHeaders()"
-                  :show-file-list="false"
-                  :on-success="(res) => $set(item, 'icon', res.url)"
-                >
-                  <img v-if="item.icon" :src="item.icon" class="avatar" />
-                  <i v-else class="el-icon-plus avatar-uploader-icon"></i>
-                </el-upload>
               </el-form-item>
               <el-form-item label="描述">
                 <el-input v-model="item.description" type="textare"></el-input>
@@ -387,12 +285,15 @@ export default {
         partners: [],
         restrain: [],
         beRestrain: [],
+        partners1: [],
+        restrain1: [],
+        beRestrain1: [],
         scores: {
           difficult: 0,
         },
         skills: [],
-        items1: [],
-        items2: [],
+        arr: [],
+        arr1: [],
       },
       categories: [],
       heroes: [],
@@ -408,7 +309,58 @@ export default {
   methods: {
     // 添加数据并跳转
     async save() {
+      let item1 = this.model.items1;
+      let arr = [];
+      for (const value of item1) {
+        const res1 = await this.$http.get(`rest/items/${value}`);
+        arr.push(res1.data);
+      }
+      this.model.arr = arr;
+      let item2 = this.model.items2;
+      let arr1 = [];
+      for (const value of item2) {
+        const res1 = await this.$http.get(`rest/items/${value}`);
+        arr1.push(res1.data);
+      }
+      this.model.arr1 = arr1;
+      // 格式化搭档的数据
+      let partners = [];
+      let p = this.model.partners
+      for (const v of p) {
+        let obj = {}
+        obj.description = v.description
+        obj._id = v._id
+        const res = await this.$http.get(`rest/heroes/${v.hero}`);
+        obj.hero = res.data.avatar
+        partners.push(obj)
+      }
+      this.model.partners1 = partners;
+      // 格式化克制谁的数据
+      let restrain = [];
+      let  R = this.model.restrain
+      for (const v of R) {
+        let obj = {}
+        obj.description = v.description
+        obj._id = v._id
+        const res = await this.$http.get(`rest/heroes/${v.hero}`);
+        obj.hero = res.data.avatar
+        restrain.push(obj)
+      }
+      this.model.restrain1 = restrain;
+            // 格式化被克制的数据
+      let beRestrain = [];
+      let  B = this.model.beRestrain
+      for (const v of B) {
+        let obj = {}
+        obj.description = v.description
+        obj._id = v._id
+        const res = await this.$http.get(`rest/heroes/${v.hero}`);
+        obj.hero = res.data.avatar
+        beRestrain.push(obj)
+      }
+      this.model.beRestrain1 = beRestrain;
       if (this.id) {
+        console.log(this.model);
         await this.$http.put(`rest/heroes/${this.id}`, this.model);
       } else {
         await this.$http.post("rest/heroes", this.model);
@@ -441,6 +393,14 @@ export default {
     async fetchHeroes() {
       const res = await this.$http.get(`rest/heroes`);
       this.heroes = res.data;
+    },
+    async equip(id) {
+      let item1 = this.model.items1;
+      for (const value of item1) {
+        console.log(value);
+      }
+      const res = await this.$http.get(`rest/items/${id}`);
+      return res.data;
     },
   },
 };

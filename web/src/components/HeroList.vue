@@ -41,5 +41,6 @@ export default {
 <style lang="scss" scoped>
   .card {
     margin-top: 0;
+    margin-bottom: 0;
   }
 </style>

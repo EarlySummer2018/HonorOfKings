@@ -20,6 +20,8 @@ import AdList from '../views/AdList.vue'
 
 import AdminUserEdit from '../views/AdminUserEdit.vue'
 import AdminUserList from '../views/AdminUserList.vue'
+
+import User from '../views/User.vue'
 Vue.use(VueRouter)
 
 const routes = [{
@@ -119,6 +121,12 @@ const routes = [{
     {
       path: '/admin_users/list',
       component: AdminUserList
+    },
+    // 用户路由
+    {
+      path: '/users/list',
+      component: User,
+      props: true
     }
   ]
 }]

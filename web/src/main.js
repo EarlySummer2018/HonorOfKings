@@ -10,10 +10,12 @@ Vue.use(VueAwesomeSwiper)
 import Card from './components/Card.vue';
 Vue.component("m-card", Card);
 import ListCard from './components/ListCard.vue';
+Vue.component("card", Card);
 Vue.component("m-list-card", ListCard);
 import axios from 'axios'
 Vue.prototype.$http = axios.create({
-  baseURL: 'http://localhost:3000/web/api'
+  baseURL: process.env.VUE_APP_API_URL || '/web/api'
+  // baseURL: 'http://localhost:3000/web/api'
 })
 new Vue({
   router,

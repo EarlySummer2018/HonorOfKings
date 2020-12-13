@@ -28,13 +28,11 @@ export default {
   props: {
     icon: {
       type: String,
-      required: true,
     },
     title: {
       type: String,
-      required: true,
     },
-    categories: { type: Array, required: true },
+    categories: { type: Array },
   },
   data() {
     return {

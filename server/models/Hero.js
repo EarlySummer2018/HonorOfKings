@@ -5,7 +5,12 @@ const schema = new mongoose.Schema({
   name: {
     type: String
   },
-
+  arr: {
+    type: Array
+  },
+  arr1: {
+    type: Array
+  },
   // 英雄头像
   avatar: {
     type: String
@@ -80,22 +85,14 @@ const schema = new mongoose.Schema({
 
   // 顺风出装
   items1: [{
-    icon: String,
-    name: {
-      type: mongoose.SchemaTypes.ObjectId,
-      ref: 'Item'
-    },
-
+    type: mongoose.SchemaTypes.ObjectId,
+    ref: 'Item'
   }],
 
   // 逆风出装
   items2: [{
-    icon: String,
-    name: {
-      type: mongoose.SchemaTypes.ObjectId,
-      ref: 'Item'
-    },
-
+    type: mongoose.SchemaTypes.ObjectId,
+    ref: 'Item'
   }],
 
   // 使用技巧
@@ -115,6 +112,9 @@ const schema = new mongoose.Schema({
 
   // 英雄关系
   // 最佳搭档
+  partners1: {
+    type: Array
+  },
   partners: [{
     hero: {
       type: mongoose.SchemaTypes.ObjectId,
@@ -123,13 +123,13 @@ const schema = new mongoose.Schema({
     // 描述
     description: {
       type: String
-    },
-    icon: {
-      type: String
     }
   }],
 
   // 克制谁
+  restrain1: {
+    type: Array
+  },
   restrain: [{
     hero: {
       type: mongoose.SchemaTypes.ObjectId,
@@ -138,13 +138,13 @@ const schema = new mongoose.Schema({
     // 描述
     description: {
       type: String
-    },
-    icon: {
-      type: String
     }
   }],
 
   // 被克制
+  beRestrain1: {
+    type: Array
+  },
   beRestrain: [{
     hero: {
       type: mongoose.SchemaTypes.ObjectId,

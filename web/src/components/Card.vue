@@ -4,7 +4,6 @@
     <div class="card-header d-flex jc-center ai-center pb-3">
       <i :class="['sprite', `sprite-${icon}`]"></i>
       <p class="flex-1 ml-2 fs-lg text-dark">{{ title }}</p>
-      <i class="sprite sprite-dot"></i>
     </div>
     <!-- end off card-header -->
     <div class="card-body mt-3">
@@ -18,11 +17,9 @@ export default {
   props: {
     title: {
       type: String,
-      required: true,
     },
     icon: {
       type: String,
-      required: true,
     },
   },
 };

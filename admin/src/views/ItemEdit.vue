@@ -36,6 +36,7 @@ export default {
   },
   created() {
     this.id && this.fetch();
+    this.equip()
   },
   methods: {
 
@@ -57,6 +58,10 @@ export default {
     async fetch() {
       const res = await this.$http.get(`rest/items/${this.id}`);
       this.model = res.data;
+    },
+        async equip() {
+      const res = await this.$http.get(`rest/items/5fbb8599c207162bac0f3e34`);
+      console.log(res);
     },
 
     // 获取上传图片的数据

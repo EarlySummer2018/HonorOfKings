@@ -1,7 +1,7 @@
 <template>
   <div class="page-newsInfo" v-if="model">
     <div class="title d-flex py-3 px-2">
-      <i class="back text-blue">&lt;</i>
+      <i class="back text-blue" @click="$router.go(-1)">&lt;</i>
       <div class="flex-1 ml-2 text-blue text-ellipsis">{{ model.title }}</div>
       <div class="text-grey fs-xs">2020-11-22</div>
     </div>
